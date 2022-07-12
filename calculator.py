@@ -12,9 +12,14 @@ entry.grid(row=0, column=0, columnspan=3, ipady=2, pady=2)
 
 myList = AR.LinkedList()
 
+
 def myclick(number):
     num = myList.addNode(number)
     entry.insert(tk.END, num)
+
+
+def close():
+    window.destroy()
 
 
 def equal():
@@ -83,7 +88,11 @@ button_clear = tk.Button(master=frame, text="clear",
 button_clear.grid(row=6, column=1, columnspan=2, pady=2)
 
 button_equal = tk.Button(master=frame, text="=", padx=15,
-                         pady=5, width=9, command=equal)
+                         pady=5, width=3, command=equal)
 button_equal.grid(row=7, column=0, columnspan=3, pady=2)
+
+button_close = tk.Button(master=frame,
+                         text='close', padx=15, command=close, width=3, pady=5)
+button_close.grid(row=7, column=2, columnspan=3, pady=2)
 
 window.mainloop()
