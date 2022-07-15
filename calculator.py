@@ -15,6 +15,8 @@ myList = AR.LinkedList()
 
 def myclick(number):
     num = myList.addNode(number)
+    if num == '*':
+        num = 'x'
     entry.insert(tk.END, num)
 
 
@@ -76,7 +78,7 @@ button_subtract = tk.Button(
 button_subtract.grid(row=5, column=1, pady=2)
 
 button_multiply = tk.Button(
-    master=frame, text="*", padx=15, pady=5, width=3, command=lambda: myclick('*'))
+    master=frame, text="x", padx=15, pady=5, width=3, command=lambda: myclick('*'))
 button_multiply.grid(row=5, column=2, pady=2)
 
 button_div = tk.Button(master=frame, text="/", padx=15,

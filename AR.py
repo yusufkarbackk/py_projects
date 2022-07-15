@@ -1,9 +1,6 @@
 from datetime import datetime
 from tkinter.messagebox import NO
 
-from matplotlib.pyplot import hist
-
-
 class LinkedList:
     def __init__(self):
         self.head = None  # head dari linked list bernilai awal None
