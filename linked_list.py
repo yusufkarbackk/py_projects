@@ -1,5 +1,5 @@
 from datetime import datetime
-from tkinter.messagebox import NO
+
 
 class LinkedList:
     def __init__(self):
@@ -11,7 +11,6 @@ class LinkedList:
             new_node = Node(data)  # buat node baru
             self.head = new_node  # jadikan node baru sebagai head
             self.head.next = None  # next dari head tersebut adalah None
-            self.head.prev = None  # prev dari head tersebut adalah None
             self.size += 1  # size dari list ditambah 1
             return new_node.data  # kembalikan data dari node
             # print(f'{self.size}')
@@ -24,31 +23,31 @@ class LinkedList:
 
             current.next = new_node  # jadikan node baru sebagai next dari current
             new_node.next = None  # next dari node baru adalah None
-            new_node.prev = current  # prev dari node baru adalah current
             self.size += 1  # tambahkan size list dengan 1
             return new_node.data  # kembalikan data dari node baru
             # print(f'{self.size}')
 
     def calculateList(self):
         if self.size == 0:  # cek apakah list nya kosong
-            print('maaf list kosong')
+            return 'maaf list kosong'
         else:
-            #history = []
             num_list = ""  # buat variabel num_list dengan isi string kosong
             current = self.head  # head sekarang di simpan dalam variabel current
             while current != None:  # loop selama current tidak None
-                # print data dari current
-                print(f'current data: {current.data}, {datetime.now()}')
                 # tambahkan data kedalam variabel num_list
                 num_list += str(current.data)
                 current = current.next  # ganti isi variabel current dengan next dari current sebelumnya
+
+            # hitung berdasarkan data yang ada di linked list
             new_node = Node(eval(num_list))
-            self.head = new_node
+
+            self.head = new_node  # head sekarang bernilai hasil perhitungan
             self.head.next = None
-            print(f"{num_list} = {eval(num_list)}, {datetime.now()}")
+
+            # memasukan hasil hitung dan tanggal kedalam variabel history
             history = f"{num_list} = {eval(num_list)}, {datetime.now()}"
-            #history.append(f'{num_list} = {eval(num_list)}')
-            #history.append(str(datetime.now()))
+
+            # menulis data dari variabel history kedalam file
             self.writeHistory(history)
             return eval(num_list)  # kembalikan hasil eval dari num_list
 
@@ -66,9 +65,10 @@ class LinkedList:
             self.head = None  # hapus head sekarang
             self.size -= 1
 
-    def writeHistory(self, data):
-        with open('history.txt', 'a') as file:
+    def writeHistory(self, data):  # menerima 1 parameter yaitu data
+        with open('history.txt', 'a') as file:  # membuat file history.txt
             file.write('\n')
+            # menulis data yang diambil dari parameter kedalam file history.txt
             file.write(f"{data}\n")
 
 
@@ -76,4 +76,3 @@ class Node:
     def __init__(self, data):
         self.data = data  # data dari node
         self.next = None  # next dari node, nilai awal adalah None
-        self.prev = None  # prev dari node, nilai awal adalah None

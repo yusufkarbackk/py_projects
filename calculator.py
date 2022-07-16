@@ -1,40 +1,40 @@
-import AR
+import linked_list
 import tkinter as tk
 import tkinter.messagebox
 from tkinter.constants import SUNKEN
 
-window = tk.Tk()
-window.title('Claculator kelompok 1')
-frame = tk.Frame(master=window, bg="red", padx=10)
+window = tk.Tk()  # membuat objek TKInter
+frame = tk.Frame(master=window, bg="green", padx=10)  # badan dari kalkulator
 frame.pack()
-entry = tk.Entry(master=frame, relief=SUNKEN, borderwidth=3, width=30)
+entry = tk.Entry(master=frame, relief=SUNKEN, borderwidth=3,
+                 width=30)  # untuk menampilkan input dan hasil
 entry.grid(row=0, column=0, columnspan=3, ipady=2, pady=2)
 
-myList = AR.LinkedList()
+myList = linked_list.LinkedList()  # membuat objek linked list
 
 
 def myclick(number):
-    num = myList.addNode(number)
+    num = myList.addNode(number)  # memasukan input kedalam linkedlist
     if num == '*':
         num = 'x'
-    entry.insert(tk.END, num)
+    entry.insert(tk.END, num)  # menampilkan input user
 
 
 def close():
-    window.destroy()
+    window.destroy()  # menutup kalkulator
 
 
 def equal():
     try:
-        y = myList.calculateList()
+        y = myList.calculateList()  # menghitung hasil dari data yang ada di dalam linked list
         entry.delete(0, tk.END)
         entry.insert(0, int(y))
     except:
-        tkinter.messagebox.showinfo("Error", "Syntax Error")
+        tkinter.messagebox.showinfo("Error", "input kosong")
 
 
 def clear():
-    myList.clearList()
+    myList.clearList()  # menghapus isi linked list
     entry.delete(0, tk.END)
 
 
